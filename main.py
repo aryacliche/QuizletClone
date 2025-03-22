@@ -36,10 +36,13 @@ if submit_button:
 
     # Point out where the user went wrong
     for index, row in df.iterrows():
-        correct_option = row[f'Option {row["Correct option"]}']
-        if user_answers[index] == correct_option:
-            st.write(f"Q{index + 1}: Correct! You earned {row['Positive']} marks.")
-        elif user_answers[index] == None:
+        try:
+            correct_option = row[f'Option {row["Correct option"]}']
+            if user_answers[index] == correct_option:
+                st.write(f"Q{index + 1}: Correct! You earned {row['Positive']} marks.")
+            elif user_answers[index] == None:
+                st.write(f"Q{index + 1}: You did not answer this question. You lost 0 marks. Correct answer: <span style='color:green'>{correct_option}</span>", unsafe_allow_html=True)
+            else:
+                st.write(f"Q{index + 1}: You answered {user_answers[index]}, but the correct answer was <span style='color:green'>{correct_option}</span>. You lost {row['Negative']} marks.", unsafe_allow_html=True)
+        except:
             st.write(f"Q{index + 1}: You did not answer this question. You lost 0 marks. Correct answer: <span style='color:green'>{correct_option}</span>", unsafe_allow_html=True)
-        else:
-            st.write(f"Q{index + 1}: You answered {user_answers[index]}, but the correct answer was <span style='color:green'>{correct_option}</span>. You lost {row['Negative']} marks.", unsafe_allow_html=True)
