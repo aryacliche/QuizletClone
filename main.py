@@ -24,13 +24,16 @@ with st.form(key='quiz_form'):
 if submit_button:
     total_marks = 0
     for index, row in df.iterrows():
-        correct_option = row[f'Option {row["Correct option"]}']
-        if user_answers[index] == correct_option:
-            total_marks += row['Positive']
-        elif user_answers[index] == None:
+        try:
+            correct_option = row[f'Option {int(row["Correct option"])}']
+            if user_answers[index] == correct_option:
+                total_marks += row['Positive']
+            elif user_answers[index] == None:
+                total_marks += 0
+            else:
+                total_marks += row['Negative']
+        except:
             total_marks += 0
-        else:
-            total_marks += row['Negative']
     
     st.write(f"Your total marks: {total_marks}")
 
