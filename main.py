@@ -35,6 +35,7 @@ if submit_button:
     st.write(f"Your total marks: {total_marks}")
 
     # Point out where the user went wrong
+    print(df.columns)
     for index, row in df.iterrows():
         try:
             correct_option = row[f'Option {int(row["Correct option"])}']
