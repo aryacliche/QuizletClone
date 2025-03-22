@@ -48,4 +48,4 @@ if submit_button:
             else:
                 st.write(f"Q{index + 1}: You answered {user_answers[index]}, but the correct answer was <span style='color:green'>{correct_option}</span>. You lost {row['Negative']} marks.", unsafe_allow_html=True)
         except:
-            st.write(f"Q{index + 1}: You did not answer this question. You lost 0 marks.")
+            st.write(f"Q{index + 1}: We didn't have the correct answer. <span style='color:green'>Apologies<\span>.", unsafe_allow_html=True)
