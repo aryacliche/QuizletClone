@@ -37,7 +37,7 @@ if submit_button:
     # Point out where the user went wrong
     for index, row in df.iterrows():
         try:
-            correct_option = row[f'Option {row["Correct option"]}']
+            correct_option = row[f'Option {int(row["Correct option"])}']
             if user_answers[index] == correct_option:
                 st.write(f"Q{index + 1}: Correct! You earned {row['Positive']} marks.")
             elif user_answers[index] == None:
